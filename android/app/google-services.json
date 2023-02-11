@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "620705815184",
+    "project_id": "kalosriz",
+    "storage_bucket": "kalosriz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:620705815184:android:6110d53d4148f684db1615",
+        "android_client_info": {
+          "package_name": "com.example.diet_junkie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "620705815184-jkg5gjonhnur11v0b6ul6e1uklm8f1ur.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwK-6Rq2V5GJSD-SxhFidP7OLIwM7FsAU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "620705815184-jkg5gjonhnur11v0b6ul6e1uklm8f1ur.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "620705815184-kl6mjhvcmps3699rbahjirhnfavi4oht.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.kalosriz"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:620705815184:android:db39aaefcd78b6c6db1615",
+        "android_client_info": {
+          "package_name": "com.example.kalosriz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "620705815184-jkg5gjonhnur11v0b6ul6e1uklm8f1ur.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwK-6Rq2V5GJSD-SxhFidP7OLIwM7FsAU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "620705815184-jkg5gjonhnur11v0b6ul6e1uklm8f1ur.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "620705815184-kl6mjhvcmps3699rbahjirhnfavi4oht.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.kalosriz"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
