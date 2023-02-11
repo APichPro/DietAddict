@@ -31,11 +31,13 @@ class ColorText extends StatefulWidget {
 class _ColorText extends State<ColorText> {
   @override
   Widget build(context) {
-    return Text(widget.text,
-        style: TextStyle(
-          color: widget.color,
-          fontFamily: "Unbounded",
-          fontSize: widget.size,
-        ));
+    return Text(
+      widget.text,
+      style: TextStyle(
+        color: widget.color,
+        fontFamily: "Unbounded",
+        fontSize: widget.size,
+      ),
+    );
   }
 }

@@ -21,21 +21,24 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(context) {
     return Container(
-        decoration: BoxDecoration(
-            color: yellow50,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(10))),
-        width: MediaQuery.of(context).size.width,
-        child: TextField(
-            cursorColor: white,
-            style: whiteTextStyle(20),
-            onChanged: onchanged,
-            keyboardType: num == true ? TextInputType.number : null,
-            inputFormatters:
-                num == true ? [FilteringTextInputFormatter.digitsOnly] : null,
-            controller: controller,
-            decoration: InputDecoration(
-                prefixIcon: prefixIcon ?? null,
-                prefixText: prefixText ?? null,
-                prefixStyle: whiteTextStyle(20))));
+      decoration: BoxDecoration(
+          color: yellow50,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(10))),
+      width: MediaQuery.of(context).size.width,
+      child: TextField(
+        cursorColor: white,
+        style: whiteTextStyle(20),
+        onChanged: onchanged,
+        keyboardType: num == true ? TextInputType.number : null,
+        inputFormatters:
+            num == true ? [FilteringTextInputFormatter.digitsOnly] : null,
+        controller: controller,
+        decoration: InputDecoration(
+          prefixIcon: prefixIcon ?? null,
+          prefixText: prefixText ?? null,
+          prefixStyle: whiteTextStyle(20),
+        ),
+      ),
+    );
   }
 }

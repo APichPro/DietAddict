@@ -46,51 +46,53 @@ class _DisplayTotalState extends State<DisplayTotal> {
       dimanche = new DateTime(lundi.year, lundi.month, lundi.day)
           .add(Duration(days: 7));
     }
-    return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      if (widget.date != null)
-        Text(
-          '${widget.date?.day.toString()}/${widget.date?.month.toString()}',
-          style: whiteTextStyle(15),
-        ),
-      if (widget.weekDate != null)
-        Text(
-          '${lundi.day.toString()}/${lundi.month.toString()}-${dimanche.day.toString()}/${dimanche.month.toString()}',
-          style: whiteTextStyle(15),
-        ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        if (widget.date != null)
           Text(
-            widget.reductedString == true ? 'Cal :' : 'Calorie :',
-            style: whiteTextStyle(25),
+            '${widget.date?.day.toString()}/${widget.date?.month.toString()}',
+            style: whiteTextStyle(15),
           ),
+        if (widget.weekDate != null)
           Text(
-            widget.tcal.toStringAsFixed(1),
-            style: whiteTextStyle(30),
+            '${lundi.day.toString()}/${lundi.month.toString()}-${dimanche.day.toString()}/${dimanche.month.toString()}',
+            style: whiteTextStyle(15),
           ),
-          if (widget.displayObj == true)
-            Text(
-              '/${widget.vCal}',
-              style: whiteTextStyle(15),
-            ),
-        ],
-      ),
-      if (widget.diffCal == true)
         Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(
+              widget.reductedString == true ? 'Cal :' : 'Calorie :',
+              style: whiteTextStyle(25),
+            ),
+            Text(
+              widget.tcal.toStringAsFixed(1),
+              style: whiteTextStyle(30),
+            ),
+            if (widget.displayObj == true)
               Text(
-                widget.reductedString == true ? 'Diff :' : 'Différentiel :',
-                style: whiteTextStyle(18),
+                '/${widget.vCal}',
+                style: whiteTextStyle(15),
               ),
-              Text(
-                (widget.vCal - widget.tcal).toStringAsFixed(1),
-                style: whiteTextStyle(18),
-              ),
-            ]),
-      Row(
+          ],
+        ),
+        if (widget.diffCal == true)
+          Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  widget.reductedString == true ? 'Diff :' : 'Différentiel :',
+                  style: whiteTextStyle(18),
+                ),
+                Text(
+                  (widget.vCal - widget.tcal).toStringAsFixed(1),
+                  style: whiteTextStyle(18),
+                ),
+              ]),
+        Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
@@ -115,59 +117,61 @@ class _DisplayTotalState extends State<DisplayTotal> {
                 '/${widget.vprot}%',
                 style: whiteTextStyle(15),
               ),
-          ]),
-      Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Text(
-              widget.reductedString == true ? 'Lip :' : 'Lipide :',
-              style: whiteTextStyle(23),
-            ),
-            ColorText(
-                size: 25,
-                ratio: (((((widget.tlip * 9) /
-                                (widget.tprot * 4 +
-                                    widget.tglu * 4 +
-                                    widget.tlip * 9)) *
-                            100) /
-                        widget.vlip) *
-                    100),
-                text: widget.tlip == 0
-                    ? '0'
-                    : '${(((widget.tlip * 9) / ((widget.tprot * 4) + (widget.tglu * 4) + (widget.tlip * 9))) * 100).toStringAsFixed(0)}%'),
-            if (widget.displayObj == true)
+          ],
+        ),
+        Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
               Text(
-                '/${widget.vlip}%',
-                style: whiteTextStyle(15),
+                widget.reductedString == true ? 'Lip :' : 'Lipide :',
+                style: whiteTextStyle(23),
               ),
-          ]),
-      Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Text(
-              widget.reductedString == true ? 'Glu :' : 'Glucide :',
-              style: whiteTextStyle(23),
-            ),
-            ColorText(
-                size: 25,
-                ratio: (((((widget.tglu * 4) /
-                                (widget.tprot * 4 +
-                                    widget.tglu * 4 +
-                                    widget.tlip * 9)) *
-                            100) /
-                        widget.vglu) *
-                    100),
-                text: widget.tglu == 0
-                    ? '0'
-                    : '${(((widget.tglu * 4) / ((widget.tprot * 4) + (widget.tglu * 4) + (widget.tlip * 9))) * 100).toStringAsFixed(0)}%'),
-            if (widget.displayObj == true)
+              ColorText(
+                  size: 25,
+                  ratio: (((((widget.tlip * 9) /
+                                  (widget.tprot * 4 +
+                                      widget.tglu * 4 +
+                                      widget.tlip * 9)) *
+                              100) /
+                          widget.vlip) *
+                      100),
+                  text: widget.tlip == 0
+                      ? '0'
+                      : '${(((widget.tlip * 9) / ((widget.tprot * 4) + (widget.tglu * 4) + (widget.tlip * 9))) * 100).toStringAsFixed(0)}%'),
+              if (widget.displayObj == true)
+                Text(
+                  '/${widget.vlip}%',
+                  style: whiteTextStyle(15),
+                ),
+            ]),
+        Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
               Text(
-                '/${widget.vglu}%',
-                style: whiteTextStyle(15),
+                widget.reductedString == true ? 'Glu :' : 'Glucide :',
+                style: whiteTextStyle(23),
               ),
-          ]),
-    ]);
+              ColorText(
+                  size: 25,
+                  ratio: (((((widget.tglu * 4) /
+                                  (widget.tprot * 4 +
+                                      widget.tglu * 4 +
+                                      widget.tlip * 9)) *
+                              100) /
+                          widget.vglu) *
+                      100),
+                  text: widget.tglu == 0
+                      ? '0'
+                      : '${(((widget.tglu * 4) / ((widget.tprot * 4) + (widget.tglu * 4) + (widget.tlip * 9))) * 100).toStringAsFixed(0)}%'),
+              if (widget.displayObj == true)
+                Text(
+                  '/${widget.vglu}%',
+                  style: whiteTextStyle(15),
+                ),
+            ]),
+      ],
+    );
   }
 }
