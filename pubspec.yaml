@@ -42,6 +42,7 @@ dependencies:
   auto_size_text: ^3.0.0
   table_calendar: ^3.0.8
   flutter_qr_bar_scanner: ^3.0.2
+  http: ^0.13.5
 
 
 dev_dependencies:

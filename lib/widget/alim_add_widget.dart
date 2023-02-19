@@ -1,16 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diet_junkie/design.dart';
 import 'package:diet_junkie/object/aliment.dart';
+import 'package:diet_junkie/object/consumed_aliment.dart';
+import 'package:diet_junkie/provider/open_foodfact_request.dart';
 import 'package:diet_junkie/provider/selected_aliments.dart';
 import 'package:diet_junkie/widget/alims_select_widget.dart';
 import 'package:diet_junkie/widget/custom_textfield.dart';
+import 'package:diet_junkie/widget/scanned_aliment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_qr_bar_scanner/qr_bar_scanner_camera.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AlimAdd extends HookConsumerWidget {
   AlimAdd({super.key});
-  final scanProvider = StateProvider<bool>((ref) => true);
+  final scanProvider = StateProvider<bool>((ref) => false);
+  final barCodeProvider = StateProvider<String>((ref) => '');
   static final getAllFireBaseAliments =
       FutureProvider.autoDispose<List<Aliment>>((ref) {
     final dataList = FirebaseFirestore.instance.collection('aliments').get();
@@ -36,9 +40,8 @@ class AlimAdd extends HookConsumerWidget {
           ),
           Expanded(
             flex: 13,
-            child: ref.watch(scanProvider) == true
+            child: ref.watch(scanProvider)
                 ? ClipRRect(
-                    borderRadius: BorderRadius.circular(10.0),
                     child: SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: QRBarScannerCamera(
@@ -47,7 +50,17 @@ class AlimAdd extends HookConsumerWidget {
                           error.toString(),
                           style: TextStyle(color: Colors.red),
                         ),
-                        qrCodeCallback: (code) {},
+                        qrCodeCallback: (code) {
+                          ref.read(barCodeProvider.notifier).state = code!;
+
+                          /*.watch(ListAlimAddNotifier.provider.notifier)
+                              .addRemConsumedAliment(
+                                  ConsumedAliment.fromAliment(
+                                      ref.watch(OFFProvider.offAlimentProvider(
+                                          code!)),
+                                      'aristide.pichereau@gmail.com ',
+                                      0));*/
+                        },
                       ),
                     ),
                   )
@@ -61,10 +74,20 @@ class AlimAdd extends HookConsumerWidget {
                         itemCount: ideas.length,
                         itemBuilder: ((context, index) {
                           return AlimWidget(
-                            aliment: ideas[index],
-                            onTap: () {},
-                            selected: false,
-                          );
+                              aliment: ideas[index],
+                              onTap: () {
+                                ref
+                                    .watch(
+                                        ListAlimAddNotifier.provider.notifier)
+                                    .addRemConsumedAliment(
+                                        ConsumedAliment.fromAliment(
+                                            ideas[index],
+                                            'aristide.pichereau@gmail.com ',
+                                            0));
+                              },
+                              selected: ref
+                                  .watch(ListAlimAddNotifier.provider.notifier)
+                                  .select(ideas[index].nom));
                         }),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 3,
@@ -73,6 +96,13 @@ class AlimAdd extends HookConsumerWidget {
                       ),
                     ),
           ),
+          ref
+              .watch(OFFProvider.offAlimentProvider(ref.watch(barCodeProvider)))
+              .when(
+                  loading: () =>
+                      const Center(child: CircularProgressIndicator()),
+                  error: (err, stack) => Center(child: Text(err.toString())),
+                  data: (ideas) => Text(ideas.protide.toString())),
           Flexible(
             flex: 2,
             child: Row(
