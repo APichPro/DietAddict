@@ -48,7 +48,7 @@ class Aliment {
 
   Aliment.fromJsonOpenFoodFact(Map<String, dynamic> json)
       : referenceId = json["product"]["_id"] ?? 'No_data',
-        nom = json["product"]["generic_name"] ?? 'No_data',
+        nom = json["product"]["abbreviated_product_name_fr"] ?? 'No_data',
         imageUrl = json["product"]["image_front_url"] ?? 'No_data',
         calorie =
             json["product"]['nutriments']["energy-kcal_100g"].toDouble() ?? 0.0,

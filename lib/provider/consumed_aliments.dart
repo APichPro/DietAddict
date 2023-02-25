@@ -14,7 +14,6 @@ class ConsumedAlimentProvider {
         .doc('aristide.pichereau@gmail.com')
         .collection('aliments_user')
         .where("timestamp", isGreaterThan: zero)
-        .where("timestamp", isLessThan: minuit)
         .orderBy("timestamp")
         .snapshots();
     return stream.map((snapshot) => snapshot.docs
@@ -90,5 +89,15 @@ class ConsumedAlimentProvider {
       }
     });
     return returnMap;
+  });
+
+  static final deleteAlimentFromFirebase =
+      FutureProvider.family.autoDispose<void, String>((ref, id) {
+    return FirebaseFirestore.instance
+        .collection('utilisateur')
+        .doc('aristide.pichereau@gmail.com')
+        .collection('aliments_user')
+        .doc(id)
+        .delete();
   });
 }

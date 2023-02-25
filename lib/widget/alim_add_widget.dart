@@ -11,10 +11,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_qr_bar_scanner/qr_bar_scanner_camera.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+final scanProvider = StateProvider<bool>((ref) => false);
+
 class AlimAdd extends HookConsumerWidget {
   AlimAdd({super.key});
-  final scanProvider = StateProvider<bool>((ref) => false);
   final barCodeProvider = StateProvider<String>((ref) => '');
+  final searchProvider = StateProvider<String>((ref) => '');
   static final getAllFireBaseAliments =
       FutureProvider.autoDispose<List<Aliment>>((ref) {
     final dataList = FirebaseFirestore.instance.collection('aliments').get();
@@ -35,11 +37,28 @@ class AlimAdd extends HookConsumerWidget {
         children: [
           Expanded(
             flex: 2,
-            child: CustomTextField(
-                controller: editingController, onchanged: (value) {}),
+            child: ref.watch(scanProvider)
+                ? ref
+                    .watch(OFFProvider.offAlimentProvider(
+                        ref.watch(barCodeProvider)))
+                    .when(
+                        loading: () =>
+                            const Center(child: CircularProgressIndicator()),
+                        error: (err, stack) =>
+                            const Center(child: Text('Scan Barcode')),
+                        data: (ideas) => ScannedAliment(
+                            selectedAliment: ideas,
+                            onPressed: (() => ref
+                                .watch(ListAlimAddNotifier.provider.notifier)
+                                .addRemConsumedAliment(ConsumedAliment.fromAliment(
+                                    ideas,
+                                    'aristide.pichereau@gmail.com ',
+                                    0)))))
+                : CustomTextField(
+                    controller: editingController, onchanged: (value) {}),
           ),
           Expanded(
-            flex: 13,
+            flex: 10,
             child: ref.watch(scanProvider)
                 ? ClipRRect(
                     child: SizedBox(
@@ -96,13 +115,6 @@ class AlimAdd extends HookConsumerWidget {
                       ),
                     ),
           ),
-          ref
-              .watch(OFFProvider.offAlimentProvider(ref.watch(barCodeProvider)))
-              .when(
-                  loading: () =>
-                      const Center(child: CircularProgressIndicator()),
-                  error: (err, stack) => Center(child: Text(err.toString())),
-                  data: (ideas) => Text(ideas.protide.toString())),
           Flexible(
             flex: 2,
             child: Row(

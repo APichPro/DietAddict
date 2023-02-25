@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:diet_junkie/object/aliment.dart';
 import 'package:diet_junkie/object/consumed_aliment.dart';
-import 'package:diet_junkie/widget/alims_select_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ListAlimAddNotifier extends StateNotifier<List<ConsumedAliment>> {
@@ -19,5 +17,16 @@ class ListAlimAddNotifier extends StateNotifier<List<ConsumedAliment>> {
 
   bool select(String value) {
     return state.map((e) => e.nom).toList().contains(value) ? true : false;
+  }
+
+  void addAlimentsFirebase() {
+    for (var i = 0; i < state.length; i++) {
+      FirebaseFirestore.instance
+          .collection('utilisateur')
+          .doc('aristide.pichereau@gmail.com')
+          .collection('aliments_user')
+          .add(state[i].toJsonFireBase());
+    }
+    state = [];
   }
 }
