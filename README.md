@@ -1,4 +1,4 @@
-# diet_junkie
+# diet_addict
 
 A new Flutter project.
 
