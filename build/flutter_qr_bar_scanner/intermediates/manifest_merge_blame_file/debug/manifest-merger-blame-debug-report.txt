@@ -1,0 +1,32 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.github.contactlutforrahman.flutter_qr_bar_scanner" >
+4
+5    <uses-sdk
+6        android:minSdkVersion="16"
+6-->C:\Program Files\flutter\.pub-cache\hosted\pub.dartlang.org\flutter_qr_bar_scanner-3.0.2\android\src\main\AndroidManifest.xml
+7        android:targetSdkVersion="16" />
+7-->C:\Program Files\flutter\.pub-cache\hosted\pub.dartlang.org\flutter_qr_bar_scanner-3.0.2\android\src\main\AndroidManifest.xml
+8
+9    <uses-permission android:name="android.permission.CAMERA" />
+9-->C:\Program Files\flutter\.pub-cache\hosted\pub.dartlang.org\flutter_qr_bar_scanner-3.0.2\android\src\main\AndroidManifest.xml:5:5-64
+9-->C:\Program Files\flutter\.pub-cache\hosted\pub.dartlang.org\flutter_qr_bar_scanner-3.0.2\android\src\main\AndroidManifest.xml:5:22-62
+10
+11    <uses-feature
+11-->C:\Program Files\flutter\.pub-cache\hosted\pub.dartlang.org\flutter_qr_bar_scanner-3.0.2\android\src\main\AndroidManifest.xml:6:5-93
+12        android:name="android.hardware.camera.autofocus"
+12-->C:\Program Files\flutter\.pub-cache\hosted\pub.dartlang.org\flutter_qr_bar_scanner-3.0.2\android\src\main\AndroidManifest.xml:6:19-67
+13        android:required="true" />
+13-->C:\Program Files\flutter\.pub-cache\hosted\pub.dartlang.org\flutter_qr_bar_scanner-3.0.2\android\src\main\AndroidManifest.xml:6:68-91
+14
+15    <application>
+15-->C:\Program Files\flutter\.pub-cache\hosted\pub.dartlang.org\flutter_qr_bar_scanner-3.0.2\android\src\main\AndroidManifest.xml:8:5-10:19
+16        <meta-data
+16-->C:\Program Files\flutter\.pub-cache\hosted\pub.dartlang.org\flutter_qr_bar_scanner-3.0.2\android\src\main\AndroidManifest.xml:9:9-104
+17            android:name="com.google.android.gms.vision.DEPENDENCIES"
+17-->C:\Program Files\flutter\.pub-cache\hosted\pub.dartlang.org\flutter_qr_bar_scanner-3.0.2\android\src\main\AndroidManifest.xml:9:20-77
+18            android:value="barcode" />
+18-->C:\Program Files\flutter\.pub-cache\hosted\pub.dartlang.org\flutter_qr_bar_scanner-3.0.2\android\src\main\AndroidManifest.xml:9:78-101
+19    </application>
+20
+21</manifest>
