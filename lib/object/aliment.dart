@@ -16,6 +16,7 @@ class Aliment {
   String? ingredient;
   String? marque;
   String? origine;
+  double qte = 0;
 
   // function
   Aliment(
@@ -30,6 +31,7 @@ class Aliment {
     this.ingredient,
     this.marque,
     this.origine,
+    this.qte,
   );
 
   Map<String, dynamic> toJson() => {

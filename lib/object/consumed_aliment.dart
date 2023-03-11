@@ -16,15 +16,15 @@ class ConsumedAliment {
   String userId;
 
   // function
-  ConsumedAliment.fromAliment(Aliment aliment, String uUserId, double qta)
+  ConsumedAliment.fromAliment(Aliment aliment, String uUserId)
       : userId = uUserId,
         referenceId = aliment.referenceId,
         nom = aliment.nom,
-        calorie = (aliment.calorie * qta) / 100,
-        protide = (aliment.protide * qta) / 100,
-        lipide = (aliment.lipide * qta) / 100,
-        glucide = (aliment.glucide * qta) / 100,
-        qte = qta,
+        calorie = (aliment.calorie * aliment.qte) / 100,
+        protide = (aliment.protide * aliment.qte) / 100,
+        lipide = (aliment.lipide * aliment.qte) / 100,
+        glucide = (aliment.glucide * aliment.qte) / 100,
+        qte = aliment.qte,
         nutriscore = Nutriscore.values.toString(),
         timestamp = DateTime.now();
 

@@ -1,15 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:diet_junkie/object/aliment.dart';
 import 'package:diet_junkie/object/consumed_aliment.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ListAlimAddNotifier extends StateNotifier<List<ConsumedAliment>> {
+class ListAlimAddNotifier extends StateNotifier<List<Aliment>> {
   ListAlimAddNotifier() : super([]);
 
   static final provider =
-      StateNotifierProvider<ListAlimAddNotifier, List<ConsumedAliment>>(
+      StateNotifierProvider<ListAlimAddNotifier, List<Aliment>>(
           (ref) => ListAlimAddNotifier());
 
-  void addRemConsumedAliment(ConsumedAliment value) {
+  void addRemConsumedAliment(Aliment value) {
     state.map((e) => e.nom).toList().contains(value.nom)
         ? state = state.where((element) => element.nom != value.nom).toList()
         : state = [...state, value];
@@ -25,7 +26,9 @@ class ListAlimAddNotifier extends StateNotifier<List<ConsumedAliment>> {
           .collection('utilisateur')
           .doc('aristide.pichereau@gmail.com')
           .collection('aliments_user')
-          .add(state[i].toJsonFireBase());
+          .add(ConsumedAliment.fromAliment(
+                  state[i], 'aristide.pichereau@gmail.com')
+              .toJsonFireBase());
     }
     state = [];
   }

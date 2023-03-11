@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diet_junkie/design.dart';
 import 'package:diet_junkie/object/aliment.dart';
-import 'package:diet_junkie/object/consumed_aliment.dart';
 import 'package:diet_junkie/provider/open_foodfact_request.dart';
 import 'package:diet_junkie/provider/selected_aliments.dart';
 import 'package:diet_junkie/widget/alims_select_widget.dart';
@@ -50,10 +49,7 @@ class AlimAdd extends HookConsumerWidget {
                             selectedAliment: ideas,
                             onPressed: (() => ref
                                 .watch(ListAlimAddNotifier.provider.notifier)
-                                .addRemConsumedAliment(ConsumedAliment.fromAliment(
-                                    ideas,
-                                    'aristide.pichereau@gmail.com ',
-                                    0)))))
+                                .addRemConsumedAliment(ideas))))
                 : CustomTextField(
                     controller: editingController, onchanged: (value) {}),
           ),
@@ -95,14 +91,13 @@ class AlimAdd extends HookConsumerWidget {
                           return AlimWidget(
                               aliment: ideas[index],
                               onTap: () {
+                                print(ideas[index].calorie);
                                 ref
                                     .watch(
                                         ListAlimAddNotifier.provider.notifier)
                                     .addRemConsumedAliment(
-                                        ConsumedAliment.fromAliment(
-                                            ideas[index],
-                                            'aristide.pichereau@gmail.com ',
-                                            0));
+                                      ideas[index],
+                                    );
                               },
                               selected: ref
                                   .watch(ListAlimAddNotifier.provider.notifier)

@@ -46,7 +46,7 @@ class AddPage extends HookConsumerWidget {
                         itemCount:
                             ref.watch(ListAlimAddNotifier.provider).length,
                         itemBuilder: (_, index) {
-                          _controllers.add(new TextEditingController());
+                          _controllers.add(TextEditingController());
                           return Container(
                             decoration: BoxDecoration(
                               color: yellow50,
@@ -70,21 +70,21 @@ class AddPage extends HookConsumerWidget {
                                 Flexible(
                                     flex: 1,
                                     child: TextField(
-                                        cursorColor: white,
-                                        style: whiteTextStyle(20),
-                                        onChanged: (value) {
-                                          print(value);
-                                          ref
-                                              .watch(ListAlimAddNotifier
-                                                  .provider)[index]
-                                              .qte = double.parse(value);
-                                        },
-                                        keyboardType: TextInputType.number,
-                                        inputFormatters: [
-                                          FilteringTextInputFormatter.digitsOnly
-                                        ],
-                                        controller: _controllers[index],
-                                        onSubmitted: (value) {}))
+                                      cursorColor: white,
+                                      style: whiteTextStyle(20),
+                                      onChanged: (value) {
+                                        print(value);
+                                        ref
+                                            .watch(ListAlimAddNotifier
+                                                .provider)[index]
+                                            .qte = double.parse(value);
+                                      },
+                                      keyboardType: TextInputType.number,
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.digitsOnly
+                                      ],
+                                      controller: _controllers[index],
+                                    ))
                               ],
                             ),
                           );
